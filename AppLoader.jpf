@@ -1,0 +1,10 @@
+# target=AppLoader
+target=edu.duke.cs.legosdn.core.appvisor.stub.AppLoader
+
+# listener=.listener.DeadlockAnalyzer
+# deadlock.format=essential
+
+listener=gov.nasa.jpf.listener.PreciseRaceDetector
+
++log.info=gov.nasa.jpf.NativePeer
+
