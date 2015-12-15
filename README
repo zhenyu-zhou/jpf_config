@@ -3,8 +3,7 @@ Hub.java:
 2. OFPacketIn pi =  (OFPacketIn) msg; // cannot convert OFMessage to OFPacketIn
 3.             byte[] packetData = pi.getPacketData();
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
-                               + po.getActionsLength()  +  packetData.length));
-            po.setPacketData(packetData); // null pointer for packetData
+                               + po.getActionsLength()  +  packetData.length)); // null pointer for packetData
 
 AppLoader.java:
 1. private static final Logger logger =  null;
