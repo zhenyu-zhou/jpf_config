@@ -1,0 +1,26 @@
+Hub.java:
+1. protected static Logger log = null; //LoggerFactory.getLogger(edu.duke.cs.legosdn.tests.apps.hub.Hub.class);
+2. OFPacketIn pi =  (OFPacketIn) msg; // cannot convert OFMessage to OFPacketIn
+3.             byte[] packetData = pi.getPacketData();
+            po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
+                               + po.getActionsLength()  +  packetData.length));
+            po.setPacketData(packetData); // null pointer for packetData
+
+AppLoader.java:
+1. private static final Logger logger =  null;
+        // LoggerFactory.getLogger(AppLoader.class);
+2. private static final InetSocketAddress PROXY_ADDR = null; // cannot find native java.net.InetAddress.init
+            // new InetSocketAddress(InetAddress.getLoopbackAddress(), Defaults.PROXY_PORT);
+3. private static final ChannelFactory CPLANE_FACTORY = null; // java.lang.Error: java.lang.NoSuchFieldException: tid
+            // new NioClientSocketChannelFactory(Executors.newFixedThreadPool(4),
+            //                                   Executors.newFixedThreadPool(16));
+
+Controller.java:
+1. protected static final Logger log = null; // LoggerFactory.getLogger(Controller.class);
+2.     protected static final INotificationManager notifier = null;
+             // NotificationManagerFactory.getNotificationManager(Controller.class);
+3. in handleMessage(): 
+if (m.getType()!=null) // zzy: java.lang.NullPointerException: Calling 'ordinal()I' on null object
+        switch (m.getType()) {
+
+
