@@ -1,0 +1,17 @@
+target=net.floodlightcontroller.core.internal.Controller
+
+# classpath=/home/zzy/jpf/legosdn/dist/legosdn-core.jar;/home/zzy/jpf/legosdn/dist/legosdn-tools.jar;/home/zzy/jpf/legosdn/dist/legosdn-tests.jar;/home/zzy/jpf/floodlight/dist/floodlight.core.jar
+
+# sourcepath=/home/zzy/jpf/floodlight/src/main/java/net/floodlightcontroller/core/internal/
+
+# symbolic.method=net.floodlightcontroller.core.internal.Controller.setUplinkPortPrefixSet(sym)
+
+# listener=gov.nasa.jpf.listener.PreciseRaceDetector
+
+# +log.info=gov.nasa.jpf.NativePeer
+
+search.multiple_errors=true
+
+symbolic.lazy = true
+symbolic.lazy.subtypes = true
+
