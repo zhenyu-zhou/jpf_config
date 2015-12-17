@@ -1,4 +1,4 @@
-Hub.java:
+Hub.java (with jpf-symbc):
 1. protected static Logger log = null; //LoggerFactory.getLogger(edu.duke.cs.legosdn.tests.apps.hub.Hub.class);
 2. OFPacketIn pi =  (OFPacketIn) msg; // cannot convert OFMessage to OFPacketIn
 3.             byte[] packetData = pi.getPacketData();

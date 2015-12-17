@@ -1,0 +1,14 @@
+@include=../jdart/src/examples/config/jdart.jpf
+
+target=shape.Area
+# target=Area
+
+concolic.method.getArea=shape.Area.getArea(s:shape.Shape)
+# concolic.method.getArea=Area.getArea(s:Shape)
+# concolic.method.getArea.config=all_fields_symbolic
+concolic.method.getArea.config=getAreaconfig
+jdart.configs.getAreaconfig.symbolic.include=s.*
+concolic.method=getArea
+
+concolic.method=getArea
+

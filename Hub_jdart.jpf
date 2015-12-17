@@ -1,0 +1,20 @@
+@include=../jdart/src/examples/config/jdart.jpf
+
+target=edu.duke.cs.legosdn.tests.apps.hub.Hub
+
+# classpath=/home/zzy/jpf/legosdn/dist/legosdn-core.jar;/home/zzy/jpf/legosdn/dist/legosdn-tools.jar;/home/zzy/jpf/legosdn/dist/legosdn-tests.jar;/home/zzy/jpf/floodlight/dist/floodlight.core.jar
+
+# sourcepath=/home/zzy/jpf/legosdn/tests/edu/duke/cs/legosdn/tests/apps/hub
+
+concolic.method.receive=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive(sw:net.floodlightcontroller.core.IOFSwitch,msg:org.openflow.protocol.OFMessage,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive.config=all_fields_symbolic
+concolic.method.receive.config=receive
+jdart.configs.receive.symbolic.include=sw.*;msg.*;cntx.*
+
+
+# concolic.method.hehe=edu.duke.cs.legosdn.tests.apps.hub.Hub.hehe(x:int)
+# concolic.method.hehe.config=all_fields_symbolic
+
+# concolic.method=hehe
+concolic.method=receive
+

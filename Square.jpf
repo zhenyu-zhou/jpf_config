@@ -1,0 +1,9 @@
+@include=../jdart/src/examples/config/jdart.jpf
+
+target=Square
+
+concolic.method.getArea=Square.getArea()
+concolic.method.getArea.config=all_fields_symbolic
+
+concolic.method=getArea
+
