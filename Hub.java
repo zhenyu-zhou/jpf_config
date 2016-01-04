@@ -39,6 +39,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import net.floodlightcontroller.core.internal.OFSwitchImpl;
+import java.io.*;
 
 /**
  *
@@ -60,11 +61,64 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
     }
 
     public Command receive(IOFSwitch sw, OFMessage msg, FloodlightContext cntx) {
-	// if(msg.getLength() == 1)
+	if(msg.getLength() == 1)
+		System.out.println("msg 1");
 		// System.exit(-1);
-		// throw new RuntimeException("xid");
-        // OFPacketIn pi = new OFPacketIn(); 
-	OFPacketIn pi =  (OFPacketIn) msg;
+		// throw new RuntimeException("msg");
+	else if(msg.getLength() == 2)
+		// throw new RuntimeException("msg");
+		System.out.println("msg 2");
+	else
+		System.out.println("other msg");
+        OFPacketIn pi = new OFPacketIn(); 
+ 	// OFPacketIn pi =  (OFPacketIn) msg;
+
+        OFPacketOut po = new OFPacketOut();
+        po.setBufferId(pi.getBufferId())
+          .setInPort(pi.getInPort());
+
+	// throw new RuntimeException("zzy");
+
+        // set actions
+        OFActionOutput action = new OFActionOutput()
+                .setPort(OFPort.OFPP_FLOOD.getValue());
+        po.setActions(Collections.singletonList((OFAction) action));
+        po.setActionsLength((short) OFActionOutput.MINIMUM_LENGTH);
+
+        // set data if is is included in the packetin
+        if (pi.getBufferId() == OFPacketOut.BUFFER_ID_NONE) {
+	    System.out.println("in if");
+            byte[] packetData = pi.getPacketData();
+            po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
+                               + po.getActionsLength()  +  packetData.length));
+            po.setPacketData(packetData);
+        }  else {
+		System.out.println("in else");
+            po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
+                               + po.getActionsLength()));
+        }
+        try {
+		// if(sw != null)
+            		// sw.write(po, cntx);
+		File outFile = new File("");
+		OutputStream os = new FileOutputStream(outFile);
+		os.write("hehehe".getBytes());
+		os.close();
+		 System.out.println("in try");
+        } catch (IOException e) {
+		// IOException e=  new IOException();
+            // log.error("Failure writing PacketOut");
+		System.out.println("in catch");
+        }
+
+        return Command.STOP;
+    }
+
+    public Command receive_zzy(OFSwitchImpl sw, OFPacketIn pi, FloodlightContext cntx) {
+	/* if(sw.isFastPort((short)1234))
+	{System.out.println("fast");}
+	else
+	{System.out.println("slow");}*/ 
 
         OFPacketOut po = new OFPacketOut();
         po.setBufferId(pi.getBufferId())
@@ -78,24 +132,30 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 
         // set data if is is included in the packetin
         if (pi.getBufferId() == OFPacketOut.BUFFER_ID_NONE) {
-	// if(true) {
+	    System.out.println("in if");
             byte[] packetData = pi.getPacketData();
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
-                               + po.getActionsLength()  +  packetData.length));
+                              + po.getActionsLength()  +  packetData.length));
+		// po.setLength(U16.t(po.getActionsLength()));
             po.setPacketData(packetData);
         }  else {
+		System.out.println("in else");
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
                                + po.getActionsLength()));
         }
-        try {
+        // try {
 		// if(sw != null)
-            		sw.write(po, cntx);
-		// System.out.println("in try");
-        } catch (IOException e) {
+            		// sw.write(po, cntx);
+		/* File outFile = new File("");
+		OutputStream os = new FileOutputStream(outFile);
+		os.write("hehehe".getBytes());
+		os.close();
+		 System.out.println("in try"); */
+        /* } catch (IOException e) {
 		// IOException e=  new IOException();
-            log.error("Failure writing PacketOut", e);
+            // log.error("Failure writing PacketOut");
 		System.out.println("in catch");
-        }
+        } */
 
         return Command.STOP;
     }
@@ -155,9 +215,12 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 	// IOFSwitch sw = new OFSwitchImpl();
 	// net.floodlightcontroller.core.internal.OFSwitchImpl sw = new net.floodlightcontroller.core.internal.OFSwitchImpl();
 	// new Hub().receive(sw, new OFMessage(), new FloodlightContext());
- 	new Hub().receive(null, new OFMessage(), new FloodlightContext());
+ 	// new Hub().receive(null, new OFMessage(), new FloodlightContext());
 	// new Hub().receive(null, null, null);
 	// new Hub().receive(new OFSwitchImpl(), new OFMessage(), new FloodlightContext());
 	// hehe(4);
+
+	// new Hub().receive_zzy(new OFSwitchImpl(), new OFPacketIn(), new FloodlightContext());
+	new Hub().receive_zzy(null, new OFPacketIn(), new FloodlightContext());
     }
 }
