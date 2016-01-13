@@ -6,5 +6,11 @@ public abstract class Shape
 	public abstract double getArea();
 	public void print()
 	{System.out.println(area);}
+
+	protected class Test
+	{
+		public void say()
+		{System.out.println("hello from shape!");}
+	}
 }
 

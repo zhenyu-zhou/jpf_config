@@ -1,0 +1,17 @@
+@include=../../jdart/src/examples/config/jdart.jpf
+
+target=myhub.Hub
+
+classpath=/home/zzy/jpf/test/myhub
+sourcepath=/home/zzy/jpf/test/myhub
+
+# concolic.method.hehe=myhub.Hub.hehe(x:int)
+
+concolic.method.test=myhub.Hub.test(sw:myhub.OFSwitchImpl)
+concolic.method.test.config=test
+jdart.configs.test.symbolic.include=sw.*
+
+# concolic.method=hehe
+concolic.method=test
+
+

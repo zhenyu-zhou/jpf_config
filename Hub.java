@@ -17,29 +17,61 @@
 
 package edu.duke.cs.legosdn.tests.apps.hub;
 
-import net.floodlightcontroller.core.FloodlightContext;
-import net.floodlightcontroller.core.IFloodlightProviderService;
-import net.floodlightcontroller.core.IOFMessageListener;
-import net.floodlightcontroller.core.IOFSwitch;
+import net.floodlightcontroller.core.*;
 import net.floodlightcontroller.core.module.FloodlightModuleContext;
 import net.floodlightcontroller.core.module.FloodlightModuleException;
 import net.floodlightcontroller.core.module.IFloodlightModule;
 import net.floodlightcontroller.core.module.IFloodlightService;
 import org.openflow.protocol.*;
-import org.openflow.protocol.action.OFAction;
-import org.openflow.protocol.action.OFActionOutput;
+import org.openflow.protocol.action.*;
 import org.openflow.util.U16;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-
 import net.floodlightcontroller.core.internal.OFSwitchImpl;
 import java.io.*;
+import net.floodlightcontroller.core.OFSwitchBase;
+import java.io.IOException;
+import java.net.SocketAddress;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
+import java.util.concurrent.locks.*;
+
+import net.floodlightcontroller.core.IFloodlightProviderService.Role;
+import net.floodlightcontroller.core.annotations.LogMessageDoc;
+import net.floodlightcontroller.core.annotations.LogMessageDocs;
+import net.floodlightcontroller.core.internal.Controller;
+import net.floodlightcontroller.core.internal.OFFeaturesReplyFuture;
+import net.floodlightcontroller.core.internal.OFStatisticsFuture;
+import net.floodlightcontroller.core.util.AppCookie;
+import net.floodlightcontroller.core.web.serializers.DPIDSerializer;
+import net.floodlightcontroller.debugcounter.IDebugCounter;
+import net.floodlightcontroller.debugcounter.IDebugCounterService;
+import net.floodlightcontroller.debugcounter.IDebugCounterService.CounterException;
+import net.floodlightcontroller.debugcounter.IDebugCounterService.CounterType;
+import net.floodlightcontroller.debugcounter.NullDebugCounter;
+import net.floodlightcontroller.devicemanager.SwitchPort;
+import net.floodlightcontroller.packet.Ethernet;
+import net.floodlightcontroller.routing.ForwardingBase;
+import net.floodlightcontroller.threadpool.IThreadPoolService;
+import net.floodlightcontroller.util.LinkedHashSetWrapper;
+import net.floodlightcontroller.util.MACAddress;
+import net.floodlightcontroller.util.OrderedCollection;
+import net.floodlightcontroller.util.TimedCache;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
+import org.jboss.netty.channel.Channel;
+import org.openflow.protocol.OFPortStatus.OFPortReason;
+import org.openflow.protocol.statistics.OFDescriptionStatistics;
+import org.openflow.protocol.statistics.OFStatistics;
+import org.openflow.protocol.statistics.OFStatisticsType;
+import org.openflow.protocol.statistics.OFTableStatistics;
+import org.openflow.util.HexString;
 
 /**
  *
@@ -55,13 +87,13 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
         // this.floodlightProvider = floodlightProvider;
     }
 
-    @Override
+    // @Override
     public String getName() {
         return net.floodlightcontroller.hub.Hub.class.getPackage().getName();
     }
 
     public Command receive(IOFSwitch sw, OFMessage msg, FloodlightContext cntx) {
-	if(msg.getLength() == 1)
+	if(msg.getLength() == 998)
 		System.out.println("msg 1");
 		// System.exit(-1);
 		// throw new RuntimeException("msg");
@@ -70,8 +102,8 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 		System.out.println("msg 2");
 	else
 		System.out.println("other msg");
-        OFPacketIn pi = new OFPacketIn(); 
- 	// OFPacketIn pi =  (OFPacketIn) msg;
+        /* OFPacketIn pi = new OFPacketIn(); 
+ 	//OFPacketIn pi =  (OFPacketIn) msg;
 
         OFPacketOut po = new OFPacketOut();
         po.setBufferId(pi.getBufferId())
@@ -93,32 +125,42 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
                                + po.getActionsLength()  +  packetData.length));
             po.setPacketData(packetData);
         }  else {
-		System.out.println("in else");
+		System.out.println("in elseeeeee");
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
                                + po.getActionsLength()));
-        }
-        try {
+        }*/
+         try {
+		OFPacketOut po = new OFPacketOut();
 		// if(sw != null)
             		// sw.write(po, cntx);
 		File outFile = new File("");
 		OutputStream os = new FileOutputStream(outFile);
-		os.write("hehehe".getBytes());
+		os.write("hehe".getBytes());
 		os.close();
-		 System.out.println("in try");
+		System.out.println("in try");
+		throw new RuntimeException("zzy");
         } catch (IOException e) {
 		// IOException e=  new IOException();
             // log.error("Failure writing PacketOut");
 		System.out.println("in catch");
         }
 
+	// throw new RuntimeException("zzy");
         return Command.STOP;
     }
 
-    public Command receive_zzy(OFSwitchImpl sw, OFPacketIn pi, FloodlightContext cntx) {
+	// public Command receive_zzy(Integer sw, OFPacketIn pi, FloodlightContext cntx) {
+    public Command receive_zzy(OFSwitchBase sw, OFPacketIn pi, FloodlightContext cntx) {
+    // public Command receive_zzy(IOFSwitch sw, OFPacketIn pi, FloodlightContext cntx) {
 	/* if(sw.isFastPort((short)1234))
 	{System.out.println("fast");}
 	else
-	{System.out.println("slow");}*/ 
+	{System.out.println("slow");}  */
+
+	/* if (sw.getId() == 5)
+		System.out.println("sw 5");
+	else
+		System.out.println("other sw");*/
 
         OFPacketOut po = new OFPacketOut();
         po.setBufferId(pi.getBufferId())
@@ -143,7 +185,7 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
                                + po.getActionsLength()));
         }
-        // try {
+       //  try {
 		// if(sw != null)
             		// sw.write(po, cntx);
 		/* File outFile = new File("");
@@ -157,34 +199,34 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 		System.out.println("in catch");
         } */
 
-        return Command.STOP;
+       return Command.STOP;
     }
 
     public boolean isCallbackOrderingPrereq(OFType type, String name) {
         return false;
     }
 
-    // @Override
+    // // @Override
     public boolean isCallbackOrderingPostreq(OFType type, String name) {
         return false;
     }
 
     // IFloodlightModule
 
-    // @Override
+    // // @Override
     public Collection<Class<? extends IFloodlightService>> getModuleServices() {
         // We don't provide any services, return null
         return null;
     }
 
-    // @Override
+    // // @Override
     public Map<Class<? extends IFloodlightService>, IFloodlightService>
             getServiceImpls() {
         // We don't provide any services, return null
         return null;
     }
 
-    // @Override
+    // // @Override
     public Collection<Class<? extends IFloodlightService>>
             getModuleDependencies() {
         Collection<Class<? extends IFloodlightService>> l = 
@@ -193,7 +235,7 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
         return l;
     }
 
-    // @Override
+    // // @Override
     public void init(FloodlightModuleContext context)
             throws FloodlightModuleException {
 
@@ -221,6 +263,8 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 	// hehe(4);
 
 	// new Hub().receive_zzy(new OFSwitchImpl(), new OFPacketIn(), new FloodlightContext());
-	new Hub().receive_zzy(null, new OFPacketIn(), new FloodlightContext());
+	// new Hub().receive_zzy(null, new OFPacketIn(), new FloodlightContext());
+	new Hub().receive_zzy(new OFSwitchBase(), new OFPacketIn(), new FloodlightContext());
     }
 }
+

@@ -8,6 +8,8 @@ target=edu.duke.cs.legosdn.tests.apps.hub.Hub
 
 # concolic.method.receive=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive(sw:net.floodlightcontroller.core.internal.OFSwitchImpl,msg:org.openflow.protocol.OFMessage,cntx:net.floodlightcontroller.core.FloodlightContext)
 concolic.method.receive=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive(sw:net.floodlightcontroller.core.IOFSwitch,msg:org.openflow.protocol.OFMessage,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive(sw:net.floodlightcontroller.core.OFSwitchBase,msg:org.openflow.protocol.OFMessage,cntx:net.floodlightcontroller.core.FloodlightContext)
+
 # concolic.method.receive.config=all_fields_symbolic
 concolic.method.receive.config=receive
 jdart.configs.receive.symbolic.include=sw.*;msg.*;cntx.*
@@ -15,9 +17,16 @@ jdart.configs.receive.symbolic.include=sw.*;msg.*;cntx.*
 # concolic.method.hehe=edu.duke.cs.legosdn.tests.apps.hub.Hub.hehe(x:int)
 # concolic.method.hehe.config=all_fields_symbolic
 
-concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:net.floodlightcontroller.core.internal.OFSwitchImpl,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:net.floodlightcontroller.core.internal.OFSwitchImpl,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:net.floodlightcontroller.core.OFSwitchBase,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:net.floodlightcontroller.core.IOFSwitch,,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:edu.duke.cs.legosdn.tests.apps.hub.Hub.OFSwitchBaseZZY,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:edu.duke.cs.legosdn.tests.apps.hub.Hub.testzzy,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+# concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.hub.Hub.receive_zzy(sw:java.lang.Integer,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+
 concolic.method.receive_zzy.config=receive_zzy
-jdart.configs.receive_zzy.symbolic.include=sw.*;pi.*;cntx.*
+# jdart.configs.receive_zzy.symbolic.include=sw.*;pi.*;cntx.*
+jdart.configs.receive_zzy.symbolic.include=pi.*;cntx.*
 
 # concolic.method=hehe
 # concolic.method=receive
