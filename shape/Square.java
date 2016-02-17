@@ -14,7 +14,7 @@ public class Square extends Shape
 		// if(test == null)
 		// 	test = this.new Test();
 		// test.say();
-		area = len*len;
+		// area = len*len;
 
 		// test the variable in super class
 		if(zzy > 5)
@@ -22,7 +22,7 @@ public class Square extends Shape
 		else
                         System.out.println("small");
 
-
+		// test the static variable
 		if(s > 998)
 			System.out.println("large static");
 		else

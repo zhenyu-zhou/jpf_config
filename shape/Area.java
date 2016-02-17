@@ -9,6 +9,7 @@ public class Area
 
 	public void printArea(Square sq, int x)
 	{
+		// test the parameter variable
 		if (x > 5)
 			return ;
 		else
