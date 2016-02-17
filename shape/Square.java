@@ -2,18 +2,34 @@ package shape;
 
 public class Square extends Shape
 {
-	public static double len = -1;
+	public double len = -1;
 	public static Test test = null; // new Test();
+	public static int s;
 
 	public void setLen(double l) { len = l; }
 	public double getLen() { return len; }
 	public double getArea()
 	{
-		if(test == null)
-			test = this.new Test();
-		test.say();
+		System.out.println("square: getArea()");
+		// if(test == null)
+		// 	test = this.new Test();
+		// test.say();
 		area = len*len;
-		print();
+
+		// test the variable in super class
+		if(zzy > 5)
+			System.out.println(">5");
+		else
+                        System.out.println("small");
+
+
+		if(s > 998)
+			System.out.println("large static");
+		else
+			System.out.println("small static");
+
+		// print();
+		// test variable in current class
 		if(len < 0)
 			// System.out.println("minus len!");
 			throw new RuntimeException("Invalid len!");

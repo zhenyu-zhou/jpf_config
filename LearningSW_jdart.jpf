@@ -1,0 +1,37 @@
+@include=../jdart/src/examples/config/jdart.jpf
+
+target=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch
+
+concolic.method.receive=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.receive(sw:edu.duke.cs.legosdn.tests.apps.zzy.IOFSwitch,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+
+concolic.method.receive.config=receive
+# jdart.configs.receive.symbolic.include=sw.*;pi.*;cntx.*
+jdart.configs.receive.symbolic.include=*
+
+
+concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.receive_zzy(sw:edu.duke.cs.legosdn.tests.apps.zzy.OFSwitchBase_zzy,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext)
+concolic.method.receive_zzy.config=receive_zzy
+jdart.configs.receive_zzy.symbolic.include=sw.*;pi.*;cntx.*;
+# jdart.configs.receive_zzy.include=x;sw.zzy
+
+concolic.method.hehe=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.hehe(x:int,sw:edu.duke.cs.legosdn.tests.apps.zzy.OFSwitchBase_zzy,cntx:net.floodlightcontroller.core.FloodlightContext,pi:org.openflow.protocol.OFPacketIn)
+# concolic.method.hehe.config=hehe
+# jdart.configs.hehe.symbolic.include=*
+
+# Delegate native calls to JVM; do not analyze such calls.
+nhandler.delegateUnhandledNative=true
+
+# Specify using a regex the canonical path of methods that should be delegated to the JVM.
+# NOTE: Delegated methods (internal implementations) are not analyzed.
+nhandler.spec.delegate=java.util.concurrent.locks.ReentrantReadWriteLock.*
+
+# Skip methods/packages/classes.
+# nhandler.spec.skip=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.processPacketInMessage
+# nhandler.spec.skip=org.openflow.protocol.OFMessage
+
+handler.resetVMState=false
+
+# concolic.method=receive
+concolic.method=receive_zzy
+# concolic.method=hehe
+

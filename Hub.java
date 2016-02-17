@@ -30,7 +30,8 @@ import org.slf4j.LoggerFactory;
 
 import net.floodlightcontroller.core.internal.OFSwitchImpl;
 import java.io.*;
-import net.floodlightcontroller.core.OFSwitchBase;
+// import net.floodlightcontroller.core.OFSwitchBase;
+import edu.duke.cs.legosdn.tests.apps.zzy.OFSwitchBase_zzy;
 import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.*;
@@ -150,12 +151,12 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
     }
 
 	// public Command receive_zzy(Integer sw, OFPacketIn pi, FloodlightContext cntx) {
-    public Command receive_zzy(OFSwitchBase sw, OFPacketIn pi, FloodlightContext cntx) {
+    public Command receive_zzy(OFSwitchBase_zzy sw, OFPacketIn pi, FloodlightContext cntx) {
     // public Command receive_zzy(IOFSwitch sw, OFPacketIn pi, FloodlightContext cntx) {
 	/* if(sw.isFastPort((short)1234))
 	{System.out.println("fast");}
 	else
-	{System.out.println("slow");}  */
+	{System.out.println("slow");} */
 
 	/* if (sw.getId() == 5)
 		System.out.println("sw 5");
@@ -185,19 +186,15 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
             po.setLength(U16.t(OFPacketOut.MINIMUM_LENGTH
                                + po.getActionsLength()));
         }
-       //  try {
+
+        try {
 		// if(sw != null)
-            		// sw.write(po, cntx);
-		/* File outFile = new File("");
-		OutputStream os = new FileOutputStream(outFile);
-		os.write("hehehe".getBytes());
-		os.close();
-		 System.out.println("in try"); */
-        /* } catch (IOException e) {
+            		sw.write(po, cntx);
+        } catch (IOException e) {
 		// IOException e=  new IOException();
             // log.error("Failure writing PacketOut");
 		System.out.println("in catch");
-        } */
+        }
 
        return Command.STOP;
     }
@@ -264,7 +261,7 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 
 	// new Hub().receive_zzy(new OFSwitchImpl(), new OFPacketIn(), new FloodlightContext());
 	// new Hub().receive_zzy(null, new OFPacketIn(), new FloodlightContext());
-	new Hub().receive_zzy(new OFSwitchBase(), new OFPacketIn(), new FloodlightContext());
+	new Hub().receive_zzy(new OFSwitchBase_zzy(), new OFPacketIn(), new FloodlightContext());
     }
 }
 

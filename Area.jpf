@@ -10,10 +10,11 @@ concolic.method.getArea.config=getAreaconfig
 jdart.configs.getAreaconfig.symbolic.include=s.*
 # jdart.configs.getAreaconfig.symbolic.include=all_fields_symbolic
 
-concolic.method.printArea=shape.Area.printArea(sq:shape.Square)
+concolic.method.printArea=shape.Area.printArea(sq:shape.Square,x:int)
 concolic.method.printArea.config=printAreaconfig
-jdart.configs.printAreaconfig.symbolic.include=sq.*
+# jdart.configs.printAreaconfig.symbolic.include=sq.*,x
+jdart.configs.printAreaconfig.symbolic.include=*
 
-concolic.method=getArea
-# concolic.method=printArea
+# concolic.method=getArea
+concolic.method=printArea
 
