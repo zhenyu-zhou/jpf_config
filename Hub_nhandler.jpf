@@ -20,7 +20,7 @@ nhandler.delegateUnhandledNative=true
 nhandler.spec.delegate=java.util.concurrent.locks.ReentrantReadWriteLock.*
 
 # Skip methods/packages/classes.
-nhandler.spec.skip=org.jboss.netty.*
+# nhandler.spec.skip=org.jboss.netty.*,org.slf4j.*,java.util.zip.ZipFile.initIDs
 
 handler.resetVMState=false
 

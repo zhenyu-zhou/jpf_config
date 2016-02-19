@@ -14,7 +14,13 @@ concolic.method.printArea=shape.Area.printArea(sq:shape.Square,x:int)
 concolic.method.printArea.config=printAreaconfig
 # jdart.configs.printAreaconfig.symbolic.include=sq.*,x
 jdart.configs.printAreaconfig.symbolic.include=*
+jdart.configs.printAreaconfig.symbolic.statics=shape.Square
+
+concolic.method.testClass=shape.Area.testClass(x:int)
+concolic.method.testClass.config=testClassConfig
+jdart.configs.testClassConfig.symbolic.include=*
 
 # concolic.method=getArea
-concolic.method=printArea
+# concolic.method=printArea
+concolic.method=testClass
 

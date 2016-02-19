@@ -80,7 +80,7 @@ import org.openflow.util.HexString;
  */
 public class Hub implements IFloodlightModule, IOFMessageListener {
     // protected static Logger log = LoggerFactory.getLogger(net.floodlightcontroller.hub.Hub.class);
-	protected static Logger log = null; //LoggerFactory.getLogger(edu.duke.cs.legosdn.tests.apps.hub.Hub.class);
+	protected static Logger log = null; // LoggerFactory.getLogger(edu.duke.cs.legosdn.tests.apps.hub.Hub.class);
 
     protected IFloodlightProviderService floodlightProvider;
 
