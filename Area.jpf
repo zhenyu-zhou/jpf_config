@@ -2,6 +2,7 @@
 
 target=shape.Area
 # target=Area
+classpath=/home/zzy/jpf/floodlight/lib/slf4j-api-1.6.4.jar
 
 concolic.method.getArea=shape.Area.getArea(s:shape.Shape)
 # concolic.method.getArea=Area.getArea(s:Shape)
