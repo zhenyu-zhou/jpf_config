@@ -21,7 +21,17 @@ concolic.method.testClass=shape.Area.testClass(x:int)
 concolic.method.testClass.config=testClassConfig
 jdart.configs.testClassConfig.symbolic.include=*
 
+concolic.method.testLong=shape.Area.testLong(l1:java.lang.Long,l2:java.lang.Long)
+concolic.method.testLong.config=testLongConfig
+jdart.configs.testLongConfig.symbolic.include=l1.*;l2.*
+
+concolic.method.testEnum=shape.Area.testEnum(a:shape.Area)
+concolic.method.testEnum.config=testEnum
+jdart.configs.testEnum.symbolic.include=*;a.*
+
 # concolic.method=getArea
 # concolic.method=printArea
-concolic.method=testClass
+# concolic.method=testClass
+# concolic.method=testLong
+concolic.method=testEnum
 

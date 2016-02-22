@@ -1,0 +1,22 @@
+@include=../jdart/src/examples/config/jdart.jpf
+
+classpath=${jpf-jdart}/lib/slf4j-api-1.6.4.jar
+
+target=shape.Area
+# target=Area
+
+concolic.method.getArea=shape.Area.getArea(s:shape.Shape)
+# concolic.method.getArea=Area.getArea(s:Shape)
+# concolic.method.getArea.config=all_fields_symbolic
+concolic.method.getArea.config=getAreaconfig
+jdart.configs.getAreaconfig.symbolic.include=s.*,shape.Square.*
+# jdart.configs.getAreaconfig.symbolic.include=all_fields_symbolic
+
+concolic.method.printArea=shape.Area.printArea(sq:shape.Square,x:int)
+concolic.method.printArea.config=printAreaconfig
+# jdart.configs.printAreaconfig.symbolic.include=sq.*,x
+jdart.configs.printAreaconfig.symbolic.include=sq.*|shape.Square|shape.Square.*
+jdart.configs.printAreaconfig.symbolic.statics=shape.Square
+
+# concolic.method=getArea
+concolic.method=printArea

@@ -12,6 +12,7 @@ public class Area
 
 	public void printArea(Square sq, int x)
 	{
+		Square s = new Square();
 		// test the parameter variable
 		if (x > 5)
 			return ;
@@ -38,6 +39,31 @@ public class Area
 	{
 		System.out.println("Name: "+c.getName());
 	}
+	
+	public void testLong(Long l1, Long l2)
+	{
+		if(l1 > 5)
+			System.out.println(">5");
+		else    System.out.println("<5");
+                if(l2 > 10)
+                        System.out.println(">10");
+                else    System.out.println("<10");
+	}
+
+public enum Color {  
+  RED, GREEN, YELLOW  
+}
+Color c = Color.GREEN; 
+
+	public void testEnum(Area a)
+	{
+		switch(a.c)
+		{
+			case RED: System.out.println("RED"); break;
+                        case GREEN: System.out.println("GREEN"); break;
+                        case YELLOW: System.out.println("YELLOW"); break;
+		}
+	}
 
 	public static void main(String[] args)
 	{
@@ -47,11 +73,16 @@ public class Area
 		// ((Square)sq).setLen(1.5);
 		// System.out.println(new Area().getArea(sq));
 
-		Square square  = new Square();
+		/* Square square  = new Square();
 		square.setLen(1.3);
 		instance.printArea(square, 4);
 
-		instance.testClass(88);
+		instance.testClass(88); */
+
+		instance.testLong(0L, 0L);
+		// instance.testLong(99);
+
+		instance.testEnum(instance);
 
 		// Circle c = new Circle();
 		// c.setRadium(1.0);
