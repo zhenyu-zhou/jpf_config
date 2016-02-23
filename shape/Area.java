@@ -65,6 +65,16 @@ Color c = Color.GREEN;
 		}
 	}
 
+	public void testSwitch(int x)
+	{
+		switch(x)
+		{
+			case 1: System.out.println(1); break;
+			case 2: System.out.println(2); break;
+			default: System.out.println("other");
+		}
+	}
+
 	public static void main(String[] args)
 	{
 		System.out.println("zzy: in area main");
@@ -79,10 +89,11 @@ Color c = Color.GREEN;
 
 		instance.testClass(88); */
 
-		instance.testLong(0L, 0L);
+		instance.testLong(0L, 1L);
 		// instance.testLong(99);
 
 		instance.testEnum(instance);
+		instance.testSwitch(3);
 
 		// Circle c = new Circle();
 		// c.setRadium(1.0);

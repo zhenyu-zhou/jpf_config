@@ -29,9 +29,14 @@ concolic.method.testEnum=shape.Area.testEnum(a:shape.Area)
 concolic.method.testEnum.config=testEnum
 jdart.configs.testEnum.symbolic.include=*;a.*
 
+concolic.method.testSwitch=shape.Area.testSwitch(x:int)
+concolic.method.testSwitch.config=testSwitchConfig
+jdart.configs.testSwitchConfig.symbolic.include=*
+
 # concolic.method=getArea
 # concolic.method=printArea
 # concolic.method=testClass
-# concolic.method=testLong
-concolic.method=testEnum
+concolic.method=testLong
+# concolic.method=testEnum
+# concolic.method=testSwitch
 
