@@ -36,7 +36,7 @@ jdart.configs.testSwitchConfig.symbolic.include=*
 concolic.method.testHashEnum=shape.Area.testHashEnum(l1:java.lang.Long,l2:java.lang.Long)
 concolic.method.testHashEnum.config=testHashEnumConfig
 jdart.configs.testHashEnumConfig.symbolic.include=l1.*;l2.*
-# jdart.configs.testHashEnumConfig.symbolic.statics=shape.Area
+jdart.configs.testHashEnumConfig.symbolic.statics=shape.Area
 
 # concolic.method=getArea
 # concolic.method=printArea

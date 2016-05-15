@@ -8,7 +8,7 @@ public class Area
 {
 	static Area instance = new Area();	
 	public enum global {Ext, Int};
-	static Hashtable <Integer, Long> tmp = new Hashtable <Integer, Long>();
+	public static Hashtable <Integer, Long> tmp = new Hashtable <Integer, Long>();
 
 	public double getArea(Shape s)
 	{ return s.getArea(); }
