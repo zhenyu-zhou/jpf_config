@@ -33,10 +33,16 @@ concolic.method.testSwitch=shape.Area.testSwitch(x:int)
 concolic.method.testSwitch.config=testSwitchConfig
 jdart.configs.testSwitchConfig.symbolic.include=*
 
+concolic.method.testHashEnum=shape.Area.testHashEnum(l1:java.lang.Long,l2:java.lang.Long)
+concolic.method.testHashEnum.config=testHashEnumConfig
+jdart.configs.testHashEnumConfig.symbolic.include=l1.*;l2.*
+# jdart.configs.testHashEnumConfig.symbolic.statics=shape.Area
+
 # concolic.method=getArea
 # concolic.method=printArea
 # concolic.method=testClass
-concolic.method=testLong
+# concolic.method=testLong
 # concolic.method=testEnum
 # concolic.method=testSwitch
+concolic.method=testHashEnum
 

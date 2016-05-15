@@ -12,7 +12,8 @@ jdart.configs.receive.symbolic.include=*
 
 concolic.method.receive_zzy=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.receive_zzy(sw:edu.duke.cs.legosdn.tests.apps.zzy.OFSwitchBase_zzy,pi:org.openflow.protocol.OFPacketIn,cntx:net.floodlightcontroller.core.FloodlightContext,sourceMac:java.lang.Long,destMac:java.lang.Long,outPort:java.lang.Short)
 concolic.method.receive_zzy.config=receive_zzy
-jdart.configs.receive_zzy.symbolic.include=*;sw.*;pi.*;cntx.*;destMac.*;
+jdart.configs.receive_zzy.symbolic.include=*;sw.*;pi.*;cntx.*;destMac.*;edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.*
+jdart.configs.receive_zzy.symbolic.statics=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch
 # jdart.configs.receive_zzy.include=x;sw.zzy
 
 concolic.method.hehe=edu.duke.cs.legosdn.tests.apps.learningswitch.LearningSwitch.hehe(x:int,sw:edu.duke.cs.legosdn.tests.apps.zzy.OFSwitchBase_zzy,cntx:net.floodlightcontroller.core.FloodlightContext,pi:org.openflow.protocol.OFPacketIn)

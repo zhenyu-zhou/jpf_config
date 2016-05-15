@@ -163,7 +163,7 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 	else
 		System.out.println("other sw");*/
 
-        OFPacketOut po = new OFPacketOut();
+        /* OFPacketOut po = new OFPacketOut();
         po.setBufferId(pi.getBufferId())
           .setInPort(pi.getInPort());
 
@@ -194,7 +194,7 @@ public class Hub implements IFloodlightModule, IOFMessageListener {
 		// IOException e=  new IOException();
             // log.error("Failure writing PacketOut");
 		System.out.println("in catch");
-        }
+        } */
 
        return Command.STOP;
     }
