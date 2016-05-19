@@ -9,6 +9,8 @@ public class Area
 	static Area instance = new Area();	
 	public enum global {Ext, Int};
 	public static Hashtable <Integer, Long> tmp = new Hashtable <Integer, Long>();
+	public static Hashtable <String, Long> tmp2 = new Hashtable <String, Long>();
+
 
 	public double getArea(Shape s)
 	{ return s.getArea(); }
@@ -69,7 +71,7 @@ public class Area
 
 		// put(global.Ext, l2+1);
 		// tmp.put(global.Ext.ordinal(), l2+1);
-                if(tmp.get(global.Ext.ordinal()) > 15)
+                if(tmp.get(global.Ext.ordinal()) > 8)
                         System.out.println(">10");
                 else    
 			System.out.println("<10");
@@ -78,6 +80,12 @@ public class Area
 		}else{
 		System.out.println("<5");
 		} */
+		tmp2.put("key", l2+1);
+                if(tmp2.get("key") > 38)
+                        System.out.println(">10");
+                else
+                        System.out.println("<10");
+
 	}
 
 public enum Color {  
@@ -125,6 +133,8 @@ Color c = Color.GREEN;
 		// instance.testEnum(instance);
 		// instance.testSwitch(3);
 
+		instance.put(global.Ext, 1L);
+		// tmp.put(global.Ext.ordinal(), 1L);
 		instance.testHashEnum(0L, 1L);
 
 		// Circle c = new Circle();
