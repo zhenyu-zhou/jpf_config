@@ -4,9 +4,8 @@ public class ArrayTest
 {
 	protected ArrayWrapper wrapper;
 
-	public static void test()
+	public static void test(ArrayTest instance)
 	{
-		ArrayTest instance = new ArrayTest();
 		int len = instance.wrapper.length();
 		if(len > 10)
 		{
@@ -18,6 +17,7 @@ public class ArrayTest
 
 	public static void main(String[] args)
 	{
-		test();
+		ArrayTest instance = new ArrayTest();
+		test(instance);
 	}
 }
