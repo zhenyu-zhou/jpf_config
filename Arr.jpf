@@ -1,0 +1,10 @@
+target=arr.ArrayTest
+# classpath=/home/zzy/jpf/floodlight/lib/slf4j-api-1.6.4.jar
+
+concolic.method.test=arr.ArrayTest()
+concolic.method.test.config=testConfig
+jdart.configs.testConfig.symbolic.include=*
+# jdart.configs.testConfig.symbolic.statics=*
+
+concolic.method=test
+
