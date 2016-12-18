@@ -1,0 +1,13 @@
+target=Forwarding_test
+
+concolic.method.test=Forwarding_test.test(x:int)
+concolic.method.test.config=test
+jdart.configs.test.symbolic.include=x
+
+concolic.method.testLong=Forwarding_test.testLong(l:java.lang.Long)
+concolic.method.testLong.config=testLong
+jdart.configs.testLong.symbolic.include=l.*
+
+concolic.method=test
+# concolic.method=testLong
+
