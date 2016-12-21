@@ -1,17 +1,22 @@
-# @include=../jdart/src/examples/config/jdart.jpf
+@include=../jdart/src/examples/config/jdart.jpf
 
 target=net.floodlightcontroller.forwarding.Forwarding
-classpath=.:floodlight/target/floodlight.jar:${jpf-jdart}/lib/slf4j-api-1.6.4.jar:${jpf-jdart}/lib/slf4j-simple-1.6.1.jar
+
+# classpath=.:../floodlight/target/floodlight.jar:${jpf-jdart}/lib/slf4j-api-1.6.4.jar:${jpf-jdart}/lib/slf4j-simple-1.6.1.jar
 
 concolic.method.test=net.floodlightcontroller.routing.ForwardingBase.test(x:int)
 concolic.method.test.config=test
 jdart.configs.test.symbolic.include=x
 
+concolic.method.testLong=net.floodlightcontroller.forwarding.Forwarding.testLong(l:java.lang.Long)
+concolic.method.testLong.config=testLong
+jdart.configs.testLong.symbolic.include=l.*
+
 concolic.method.receive=net.floodlightcontroller.routing.ForwardingBase.receive(net.floodlightcontroller.core.IOFSwitch,org.openflow.protocol.OFMessage,net.floodlightcontroller.core.FloodlightContext)
 concolic.method.receive.config=receive
 jdart.configs.receive.symbolic.include=*
 
-concolic.method.driver=net.floodlightcontroller.routing.testDriver(net.floodlightcontroller.core.IOFSwitch,org.openflow.protocol.OFMessage,net.floodlightcontroller.core.FloodlightContext,x:int,net.floodlightcontroller.packet.Ethernet)
+concolic.method.driver=net.floodlightcontroller.forwarding.Forwarding.testDriver(net.floodlightcontroller.core.IOFSwitch,org.openflow.protocol.OFMessage,net.floodlightcontroller.core.FloodlightContext,x:int,net.floodlightcontroller.packet.Ethernet,net.floodlightcontroller.devicemanager.IDevice,net.floodlightcontroller.devicemanager.IDevice,java.lang.Long)
 concolic.method.driver.config=driver
 jdart.configs.driver.symbolic.include=*
 
@@ -20,4 +25,5 @@ nhandler.spec.delegate=java.util.concurrent.locks.ReentrantReadWriteLock.*
 # concolic.method=test
 # concolic.method=receive
 concolic.method=driver
+# concolic.method=testLong
 
